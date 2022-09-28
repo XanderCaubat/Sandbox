@@ -24,13 +24,17 @@ def get_valid_number():
 
 
 def load_number(filename):
-    infile = open(filename, "r")
     try:
+        infile = open(filename, "r")
         number = int(infile.read())
     except ValueError:
         print(f"Invalid contents in {filename}")
         number = 6
-    infile.close()
+    except FileNotFoundError:
+        print(f"{filename} not found")
+        number = 4
+    else:
+        infile.close()
     return number
 
 
