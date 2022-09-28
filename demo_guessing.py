@@ -20,12 +20,16 @@ def get_valid_number():
             is_valid_input = True
         except ValueError:
             print("Invalid integer")
-    return guess # no problem with potential undefined variable
+    return guess  # no problem with potential undefined variable
 
 
 def load_number(filename):
     infile = open(filename, "r")
-    number = int(infile.read())
+    try:
+        number = int(infile.read())
+    except ValueError:
+        print(f"Invalid contents in {filename}")
+        number = 6
     infile.close()
     return number
 
